@@ -88,28 +88,19 @@ function heroIntro() {
   });
 }
 
-/* Contact is section 05, "Say my name." One play, after the loader
-   theme. A scroll is not a tap, so the first play() often fails and
-   must be retried on the next click. */
+/* Contact is section 05, "Say my name." Play once when that section
+   is on screen, after the loader theme. Do not route it through
+   AudioContext: a scroll is not a tap, so a new context stays
+   suspended and the clip is silent until a click. */
 function initSayMyName() {
   const section = document.getElementById("contact");
   if (!section) return;
-  const Ctx = window.AudioContext || window.webkitAudioContext;
-  const audio = new Audio("assets/say-my-name.mp3");
+  const audio = new Audio("assets/say-my-name.wav");
   audio.preload = "auto";
   audio.loop = false;
-  let ctx;
+  audio.volume = 1;
   let used = false;
   let want = false;
-
-  const boost = () => {
-    if (!Ctx || ctx) return;
-    ctx = new Ctx();
-    const src = ctx.createMediaElementSource(audio);
-    const gain = ctx.createGain();
-    gain.gain.value = 10;
-    src.connect(gain).connect(ctx.destination);
-  };
 
   const onScreen = () => {
     const r = section.getBoundingClientRect();
@@ -123,16 +114,11 @@ function initSayMyName() {
 
   const playNow = () => {
     if (used || !want || !themeQuiet()) return;
-    boost();
-    const go = () => {
-      audio.loop = false;
-      audio.currentTime = 0;
-      audio.play().then(() => {
-        used = true;
-      }).catch(() => {});
-    };
-    if (ctx && ctx.state !== "running") ctx.resume().then(go).catch(() => {});
-    else go();
+    audio.loop = false;
+    audio.currentTime = 0;
+    audio.play().then(() => {
+      used = true;
+    }).catch(() => {});
   };
 
   const requestPlay = () => {
@@ -148,7 +134,6 @@ function initSayMyName() {
     () => {
       if (!want && !onScreen()) return;
       want = true;
-      boost();
       playNow();
     },
     true
