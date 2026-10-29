@@ -134,6 +134,14 @@
   color: var(--ink-faint);
   margin: 0 8px;
 }
+@media (max-width: 1023px) {
+  .hero-sub .sep {
+    display: none;
+  }
+  .hero-sub-rest {
+    display: block;
+  }
+}
 .hero-lead {
   margin-top: 26px;
   max-width: 52ch;
