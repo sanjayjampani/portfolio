@@ -430,9 +430,12 @@
   }
   .xp-date {
     order: 3;
-    justify-self: end;
-    align-items: flex-end;
-    text-align: right;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    justify-self: start;
+    gap: var(--s-2);
+    text-align: left;
     padding-top: 0;
   }
   .xp-bullets {
