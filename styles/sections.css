@@ -430,6 +430,7 @@
   .xp-date {
     order: 3;
     align-self: start;
+    align-items: flex-start;
     padding-top: 0;
   }
   .xp-bullets {
