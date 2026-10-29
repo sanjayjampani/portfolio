@@ -216,6 +216,11 @@
 .stat {
   text-align: center;
 }
+@media (max-width: 1023px) {
+  .stat {
+    text-align: left;
+  }
+}
 .stat .v {
   font-family: var(--font-display);
   font-weight: 700;
