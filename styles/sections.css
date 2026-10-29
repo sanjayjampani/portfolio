@@ -578,15 +578,21 @@
 }
 
 @media (max-width: 1023px) {
-  .toggle {
-    display: none;
-  }
+  /* Grid vs list on a single-column phone must not change card
+     width or title size — that height jump stacked the next
+     section on top of the project. */
   .projects.as-grid .project {
     max-width: 100%;
   }
   .projects.as-grid .project h3 {
     font-size: var(--step-1);
     line-height: inherit;
+  }
+  .project {
+    transition: transform var(--dur-fast) var(--ease-silk),
+      border-color var(--dur-fast) var(--ease-silk),
+      background var(--dur-fast) var(--ease-silk),
+      opacity var(--dur-mid) var(--ease-silk);
   }
 }
 
