@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# LaTeX build artifacts
+.build/
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# editors / deps
+node_modules/
+.vercel
+
+# Claude Code local settings
+.claude/settings.local.json

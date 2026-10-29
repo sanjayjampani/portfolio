@@ -1,0 +1,312 @@
+/* ============================================================
+   components.css — reusable primitives.
+   The periodic tile is the core motif; everything else is built
+   with restraint (one accent, one motion idea per component).
+   ============================================================ */
+
+/* ---------- cursor-follow spotlight (Brittany Chiang steal) ---------- */
+.spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-spotlight);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-silk);
+  background: radial-gradient(
+    540px circle at var(--mx, 50%) var(--my, -10%),
+    var(--accent-glow),
+    transparent 64%
+  );
+}
+body.has-spotlight .spotlight {
+  opacity: 1;
+}
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .spotlight {
+    display: none;
+  }
+}
+
+/* ---------- smoke canvas (scoped to hero) ---------- */
+.smoke {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-smoke);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* ---------- the periodic element tile ---------- */
+.tile {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  aspect-ratio: 1;
+  width: var(--tile-size, 64px);
+  background: linear-gradient(180deg, var(--green-tile-top) 0%, var(--green-fill) 100%);
+  border: 1px solid var(--green-mid);
+  border-radius: var(--r-tile);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    inset 0 -8px 16px rgba(0, 0, 0, 0.35);
+  color: var(--tile-letter);
+  line-height: 1;
+  user-select: none;
+}
+.tile .sym {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: calc(var(--tile-size, 64px) * 0.46);
+  letter-spacing: -0.02em;
+}
+.tile .num {
+  position: absolute;
+  top: calc(var(--tile-size, 64px) * 0.08);
+  left: calc(var(--tile-size, 64px) * 0.1);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: calc(var(--tile-size, 64px) * 0.16);
+  color: rgba(255, 255, 255, 0.72);
+}
+.tile .mass {
+  position: absolute;
+  bottom: calc(var(--tile-size, 64px) * 0.07);
+  right: calc(var(--tile-size, 64px) * 0.09);
+  font-family: var(--font-mono);
+  font-size: calc(var(--tile-size, 64px) * 0.13);
+  color: rgba(255, 255, 255, 0.42);
+}
+.tile .ename {
+  position: absolute;
+  bottom: calc(var(--tile-size, 64px) * 0.1);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: calc(var(--tile-size, 64px) * 0.12);
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: lowercase;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  border: 1px solid var(--line-green);
+  border-radius: var(--r-tile);
+  color: var(--accent-bright);
+  overflow: hidden;
+  isolation: isolate;
+  transition: color var(--dur-fast) var(--ease-silk),
+    border-color var(--dur-fast) var(--ease-silk);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-mid) var(--ease-silk);
+}
+.btn:hover {
+  color: var(--bg-900);
+  border-color: var(--accent);
+}
+.btn:hover::before {
+  transform: scaleX(1);
+}
+.btn .ico {
+  width: 16px;
+  height: 16px;
+}
+
+/* hazmat CTA — the ONE place yellow fills */
+.btn--hazmat {
+  color: var(--hazmat);
+  border-color: var(--hazmat-dim);
+}
+.btn--hazmat::before {
+  background: var(--hazmat);
+}
+.btn--hazmat:hover {
+  color: var(--hazmat-ink);
+  border-color: var(--hazmat);
+}
+
+/* ---------- tech chips ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1;
+  padding: 6px 10px;
+  color: var(--accent-bright);
+  background: rgba(63, 165, 100, 0.08);
+  border: 1px solid var(--line-green);
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+
+/* ---------- social / icon links ---------- */
+.icons {
+  display: flex;
+  gap: 10px;
+}
+.icons a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: var(--r-tile);
+  transition: color var(--dur-fast) var(--ease-silk),
+    border-color var(--dur-fast) var(--ease-silk),
+    transform var(--dur-fast) var(--ease-silk),
+    background var(--dur-fast) var(--ease-silk);
+}
+.icons a:hover {
+  color: var(--ink);
+  border-color: var(--green-mid);
+  background: rgba(63, 165, 100, 0.06);
+  transform: translateY(-3px);
+}
+.icons svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* ---------- scroll-spy nav ---------- */
+.nav {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 7px 0;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  transition: color 0.3s var(--ease-silk);
+}
+.nav .n-line {
+  width: 28px;
+  height: 1px;
+  background: var(--ink-faint);
+  transition: width 0.34s var(--ease-silk), background 0.34s var(--ease-silk);
+}
+.nav .n-num {
+  font-size: 0.78em;
+  color: var(--ink-faint);
+  transition: color 0.3s var(--ease-silk);
+}
+.nav a:hover {
+  color: var(--ink);
+}
+.nav a:hover .n-line {
+  width: 44px;
+  background: var(--accent);
+}
+.nav a.is-active {
+  color: var(--ink);
+}
+.nav a.is-active .n-line {
+  width: 60px;
+  background: var(--accent);
+}
+.nav a.is-active .n-num {
+  color: var(--accent);
+}
+
+/* ---------- reveal primitive (JS adds .in when in view) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--ease-silk), transform 0.7s var(--ease-silk);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- loader / title-card curtain ---------- */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-loader);
+  display: grid;
+  place-items: center;
+  background: var(--bg-900);
+}
+.loader__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.loader__tiles {
+  display: flex;
+  gap: 10px;
+}
+.loader__cap {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.loader__bar {
+  width: 180px;
+  height: 2px;
+  background: var(--bg-700);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.loader__bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+}
+.loader.is-done {
+  transform: translateY(-101%);
+  transition: transform 0.9s var(--ease-dolly);
+}
+.no-js .loader {
+  display: none;
+}

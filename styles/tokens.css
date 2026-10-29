@@ -1,0 +1,108 @@
+/* ============================================================
+   tokens.css — the single source of truth for the whole site.
+   Breaking Bad palette: forest-green ramp on desert-night black,
+   hazmat yellow reserved strictly for CTA / danger, meth-blue used
+   exactly once. No purple. No gradient text. (see README colophon)
+   ============================================================ */
+
+:root {
+  /* ---- Grounds: near-black, never pure black (desert night) ---- */
+  --bg-900: #0a0b09; /* page base */
+  --bg-850: #0e100c; /* hairline-elevated wash */
+  --bg-800: #12140f; /* elevated panels (Elegant Black) */
+  --bg-700: #1a1c17; /* cards */
+  --bg-650: #21241d; /* card hover / rail seams */
+
+  /* ---- Heisenberg green ramp (SchemeColor + logo #026635) ---- */
+  --green-fill: #032202;     /* deep fir — tile bottom */
+  --green-deep: #093009;     /* dark moss */
+  --green-tile-top: #0d3e10; /* phthalo — tile top */
+  --green-emerald: #1f6032;  /* dark emerald */
+  --green-core: #026635;     /* logo-sourced primary */
+  --green-mid: #29773e;      /* amazon — borders */
+  --accent: #3fa564;         /* links, highlights, scroll-spy active */
+  --accent-bright: #5bc47f;  /* hover lift */
+  --accent-glow: rgba(63, 165, 100, 0.14);
+
+  /* ---- Hazmat yellow — DANGER / CTA ONLY ---- */
+  --hazmat: #e9d71b;
+  --hazmat-dim: #a49828;
+  --hazmat-ink: #1a1804; /* text on hazmat fill */
+
+  /* ---- Meth blue — exactly one high-impact use (the elite rank) ---- */
+  --meth-blue: #5bc8f5;
+
+  /* ---- Desert tan — civilian / neutral dividers + prose accent ---- */
+  --tan: #c2a878;
+  --tan-soft: #d9c7a3;
+
+  /* ---- Text ---- */
+  --ink: #ede9df;       /* cream body on dark */
+  --ink-dim: #9c988c;   /* secondary */
+  --ink-faint: #6c685e; /* hints, captions */
+  --tile-letter: #ffffff;
+
+  /* ---- Lines / borders ---- */
+  --line: rgba(194, 168, 120, 0.14);  /* tan hairline */
+  --line-strong: rgba(194, 168, 120, 0.26);
+  --line-green: rgba(63, 165, 100, 0.24);
+
+  /* ---- Typography ---- */
+  --font-display: "Corben", "Georgia", "Times New Roman", serif;
+  --font-sans: "Archivo", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Menlo", monospace;
+
+  /* fluid type scale — 1.25 major third */
+  --step--1: clamp(0.81rem, 0.78rem + 0.16vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.22vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.08rem + 0.55vw, 1.5rem);
+  --step-2: clamp(1.55rem, 1.28rem + 1.15vw, 2.25rem);
+  --step-3: clamp(2.1rem, 1.55rem + 2.5vw, 3.4rem);
+  --hero: clamp(2.6rem, 1.7rem + 5.2vw, 6rem);
+
+  --leading-body: 1.62;
+  --leading-tight: 1.04;
+  --tracking-mono: 0.08em;
+  --tracking-tight: -0.012em;
+
+  /* ---- Spacing (8px base) ---- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  /* ---- Radii ---- */
+  --r-tile: 4px;
+  --r-card: 10px;
+  --r-pill: 999px;
+
+  /* ---- Layout ---- */
+  --rail-w: 340px;
+  --content-max: 720px;
+  --shell-max: 1200px;
+  --gutter: clamp(20px, 5vw, 64px);
+
+  /* ---- Motion (bespoke cinematic easing — this is what reads "crafted") ---- */
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);   /* reveals, tile flares */
+  --ease-dolly: cubic-bezier(0.65, 0, 0.35, 1);  /* camera moves */
+  --ease-snap: cubic-bezier(0.34, 1.4, 0.64, 1); /* flip morph, slight overshoot */
+  --dur-fast: 0.2s;
+  --dur-mid: 0.45s;
+  --dur-slow: 0.9s;
+
+  /* ---- z-index ladder ---- */
+  --z-smoke: 0;
+  --z-spotlight: 1;
+  --z-content: 2;
+  --z-rail: 5;
+  --z-loader: 50;
+  --z-skip: 60;
+
+  color-scheme: dark;
+}
