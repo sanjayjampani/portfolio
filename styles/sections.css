@@ -410,6 +410,26 @@
     gap: 10px;
     padding: 18px;
   }
+  .xp-body {
+    display: contents;
+  }
+  .xp-role {
+    order: 1;
+  }
+  .xp-tag {
+    order: 2;
+  }
+  .xp-date {
+    order: 3;
+    align-self: start;
+    padding-top: 0;
+  }
+  .xp-bullets {
+    order: 4;
+  }
+  .xp-item .chips {
+    order: 5;
+  }
 }
 
 /* ---------------- projects ---------------- */
