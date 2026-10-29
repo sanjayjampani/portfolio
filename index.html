@@ -41,20 +41,21 @@
     <script src="scripts/vendor/ScrollTrigger.min.js" defer></script>
     <script src="scripts/vendor/Flip.min.js" defer></script>
     <script src="scripts/vendor/lenis.min.js" defer></script>
-    <script type="module" src="scripts/main.js?v=10"></script>
+    <script type="module" src="scripts/main.js?v=14"></script>
   </head>
 
   <body class="is-loading">
     <audio id="bb-theme" src="assets/breaking_bad.mp3" preload="auto" autoplay playsinline></audio>
     <script>
-      /* Theme owns the loader. Anything else waits until the curtain
-         is up and this pass has finished, so a refresh on Contact
-         cannot play both at once. */
+      /* Theme owns the loader. Native loop=true never fires ended, and
+         canplaythrough was turning loop back on, so the clip ran
+         forever on the live site. Replay only while the curtain is up. */
       (function () {
         var theme = document.getElementById("bb-theme");
-        theme.loop = true;
+        theme.loop = false;
+        theme.removeAttribute("loop");
         theme.volume = 1;
-        var started = false;
+        var loading = true;
         var waiters = [];
         window.__loaderDone = false;
         window.__hasWaitingAudio = false;
@@ -67,33 +68,31 @@
           waiters = [];
           for (var i = 0; i < q.length; i++) q[i]();
         }
-        function playing() {
-          if (started) return;
-          started = true;
-          window.removeEventListener("pointerdown", start, true);
-          window.removeEventListener("keydown", start, true);
-        }
         function start() {
-          if (window.__loaderDone && window.__hasWaitingAudio) return;
-          theme.loop = !window.__loaderDone;
-          var p = theme.play();
-          if (p) p.then(playing).catch(function () {});
-        }
-        window.__releaseTheme = function () {
+          if (!loading && window.__hasWaitingAudio) return;
           theme.loop = false;
-        };
-        window.__markLoaderDone = function () {
+          theme.play().catch(function () {});
+        }
+        function stopLoop() {
+          loading = false;
           window.__loaderDone = true;
           theme.loop = false;
           flush();
-        };
+        }
+        window.__releaseTheme = stopLoop;
+        window.__markLoaderDone = stopLoop;
         window.__afterLoaderAudio = function (fn) {
           waiters.push(fn);
           flush();
         };
-        theme.addEventListener("playing", playing);
-        theme.addEventListener("ended", flush);
-        theme.addEventListener("canplaythrough", start);
+        theme.addEventListener("ended", function () {
+          if (loading) {
+            theme.currentTime = 0;
+            theme.play().catch(function () {});
+            return;
+          }
+          flush();
+        });
         start();
         window.addEventListener("pointerdown", start, true);
         window.addEventListener("keydown", start, true);
