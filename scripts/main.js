@@ -88,8 +88,9 @@ function heroIntro() {
   });
 }
 
-/* Contact is section 05, "Say my name." One play, and only after the
-   loader theme is done. A refresh on this section used to start both. */
+/* Contact is section 05, "Say my name." One play, after the loader
+   theme. A scroll is not a tap, so the first play() often fails and
+   must be retried on the next click. */
 function initSayMyName() {
   const section = document.getElementById("contact");
   if (!section) return;
@@ -99,7 +100,7 @@ function initSayMyName() {
   audio.loop = false;
   let ctx;
   let used = false;
-  let pending = false;
+  let want = false;
 
   const boost = () => {
     if (!Ctx || ctx) return;
@@ -110,24 +111,33 @@ function initSayMyName() {
     src.connect(gain).connect(ctx.destination);
   };
 
+  const onScreen = () => {
+    const r = section.getBoundingClientRect();
+    return r.top < window.innerHeight && r.bottom > 0;
+  };
+
+  const themeQuiet = () => {
+    const t = document.getElementById("bb-theme");
+    return !t || t.paused || t.ended;
+  };
+
   const playNow = () => {
-    if (used) return;
-    used = true;
-    audio.loop = false;
+    if (used || !want || !themeQuiet()) return;
     boost();
     const go = () => {
+      audio.loop = false;
       audio.currentTime = 0;
-      audio.play().catch(() => {
-        used = false;
-      });
+      audio.play().then(() => {
+        used = true;
+      }).catch(() => {});
     };
-    if (ctx && ctx.state !== "running") ctx.resume().then(go).catch(() => { used = false; });
+    if (ctx && ctx.state !== "running") ctx.resume().then(go).catch(() => {});
     else go();
   };
 
   const requestPlay = () => {
-    if (used || pending) return;
-    pending = true;
+    if (used) return;
+    want = true;
     window.__hasWaitingAudio = true;
     if (window.__afterLoaderAudio) window.__afterLoaderAudio(playNow);
     else playNow();
@@ -136,11 +146,15 @@ function initSayMyName() {
   window.addEventListener(
     "pointerdown",
     () => {
+      if (!want && !onScreen()) return;
+      want = true;
       boost();
-      if (ctx && ctx.state !== "running") ctx.resume().catch(() => {});
+      playNow();
     },
-    { capture: true, once: true }
+    true
   );
+
+  document.getElementById("bb-theme")?.addEventListener("ended", playNow);
 
   const io = new IntersectionObserver(
     (entries) => {
