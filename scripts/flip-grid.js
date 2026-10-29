@@ -16,6 +16,7 @@ export function initFlip() {
   };
 
   btn.addEventListener("click", () => {
+    if (window.matchMedia("(max-width: 1023px)").matches) return;
     const willBeGrid = !grid.classList.contains("as-grid");
     grid.classList.toggle("as-grid");
     setLabel(willBeGrid);

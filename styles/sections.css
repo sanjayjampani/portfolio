@@ -566,9 +566,16 @@
   color: var(--tan);
 }
 
-@media (max-width: 640px) {
-  .projects.as-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 1023px) {
+  .toggle {
+    display: none;
+  }
+  .projects.as-grid .project {
+    max-width: 100%;
+  }
+  .projects.as-grid .project h3 {
+    font-size: var(--step-1);
+    line-height: inherit;
   }
 }
 

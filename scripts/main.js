@@ -9,7 +9,7 @@ import { initReveals } from "./reveals.js";
 import { initScrollspy } from "./scrollspy.js";
 import { initSpotlight } from "./spotlight.js";
 import { initCountUp } from "./countup.js";
-import { initFlip } from "./flip-grid.js";
+import { initFlip } from "./flip-grid.js?v=18";
 import { initSmoke } from "./smoke.js";
 import { runLoader } from "./loader.js";
 
