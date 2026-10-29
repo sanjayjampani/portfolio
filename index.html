@@ -41,24 +41,28 @@
     <script src="scripts/vendor/ScrollTrigger.min.js" defer></script>
     <script src="scripts/vendor/Flip.min.js" defer></script>
     <script src="scripts/vendor/lenis.min.js" defer></script>
-    <script type="module" src="scripts/main.js?v=14"></script>
+    <script type="module" src="scripts/main.js?v=15"></script>
   </head>
 
   <body class="is-loading">
     <audio id="bb-theme" src="assets/breaking_bad.mp3" preload="auto" autoplay playsinline></audio>
     <script>
-      /* Theme owns the loader. Native loop=true never fires ended, and
-         canplaythrough was turning loop back on, so the clip ran
-         forever on the live site. Replay only while the curtain is up. */
+      /* One play of the loader theme. Replay only if the tiles are
+         still up. Clicks must not start it again after that, or the
+         live site sounded like a loop. */
       (function () {
         var theme = document.getElementById("bb-theme");
         theme.loop = false;
         theme.removeAttribute("loop");
         theme.volume = 1;
-        var loading = true;
+        var used = false;
         var waiters = [];
         window.__loaderDone = false;
         window.__hasWaitingAudio = false;
+        function loaderUp() {
+          var el = document.getElementById("loader");
+          return !!(el && el.isConnected && !el.classList.contains("is-done"));
+        }
         function busy() {
           return !theme.paused && !theme.ended;
         }
@@ -69,12 +73,14 @@
           for (var i = 0; i < q.length; i++) q[i]();
         }
         function start() {
-          if (!loading && window.__hasWaitingAudio) return;
+          if (used && !loaderUp()) return;
+          used = true;
           theme.loop = false;
-          theme.play().catch(function () {});
+          theme.play().catch(function () {
+            used = false;
+          });
         }
         function stopLoop() {
-          loading = false;
           window.__loaderDone = true;
           theme.loop = false;
           flush();
@@ -86,11 +92,14 @@
           flush();
         };
         theme.addEventListener("ended", function () {
-          if (loading) {
+          if (loaderUp()) {
             theme.currentTime = 0;
             theme.play().catch(function () {});
             return;
           }
+          theme.pause();
+          window.removeEventListener("pointerdown", start, true);
+          window.removeEventListener("keydown", start, true);
           flush();
         });
         start();
