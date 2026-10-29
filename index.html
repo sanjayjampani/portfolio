@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sanjay Chowdary Jampani — Software Developer · Flutter &amp; Full-Stack</title>
+    <title>Sanjay Chowdary Jampani, Software Developer · Flutter &amp; Full-Stack</title>
     <meta
       name="description"
-      content="Sanjay Chowdary Jampani — Software Developer at Sliqpay building a cross-border payments app (US to India) in Flutter, React, Node.js and Firebase. BITS Pilani, CSE."
+      content="Sanjay Chowdary Jampani, Software Developer at Sliqpay building a cross-border payments app (US to India) in Flutter, React, Node.js and Firebase. BITS Pilani, CSE."
     />
     <meta name="theme-color" content="#0a0b09" />
     <meta name="color-scheme" content="dark" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Sanjay Chowdary Jampani — Software Developer · Flutter & Full-Stack" />
+    <meta property="og:title" content="Sanjay Chowdary Jampani, Software Developer · Flutter & Full-Stack" />
     <meta
       property="og:description"
       content="Cross-border payments @ Sliqpay · Flutter, React, Node.js, Firebase · BITS Pilani."
@@ -26,20 +26,79 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="styles/tokens.css" />
-    <link rel="stylesheet" href="styles/base.css" />
-    <link rel="stylesheet" href="styles/layout.css" />
-    <link rel="stylesheet" href="styles/components.css" />
-    <link rel="stylesheet" href="styles/sections.css" />
+    <link rel="stylesheet" href="styles/tokens.css?v=13" />
+    <link rel="stylesheet" href="styles/base.css?v=13" />
+    <link rel="stylesheet" href="styles/layout.css?v=13" />
+    <link rel="stylesheet" href="styles/components.css?v=13" />
+    <link rel="stylesheet" href="styles/sections.css?v=13" />
 
+    <script>
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+      window.scrollTo(0, 0);
+    </script>
     <script src="scripts/vendor/gsap.min.js" defer></script>
     <script src="scripts/vendor/ScrollTrigger.min.js" defer></script>
     <script src="scripts/vendor/Flip.min.js" defer></script>
     <script src="scripts/vendor/lenis.min.js" defer></script>
-    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="scripts/main.js?v=10"></script>
   </head>
 
   <body class="is-loading">
+    <audio id="bb-theme" src="assets/breaking_bad.mp3" preload="auto" autoplay playsinline></audio>
+    <script>
+      /* Theme owns the loader. Anything else waits until the curtain
+         is up and this pass has finished, so a refresh on Contact
+         cannot play both at once. */
+      (function () {
+        var theme = document.getElementById("bb-theme");
+        theme.loop = true;
+        theme.volume = 1;
+        var started = false;
+        var waiters = [];
+        window.__loaderDone = false;
+        window.__hasWaitingAudio = false;
+        function busy() {
+          return !theme.paused && !theme.ended;
+        }
+        function flush() {
+          if (!window.__loaderDone || busy()) return;
+          var q = waiters;
+          waiters = [];
+          for (var i = 0; i < q.length; i++) q[i]();
+        }
+        function playing() {
+          if (started) return;
+          started = true;
+          window.removeEventListener("pointerdown", start, true);
+          window.removeEventListener("keydown", start, true);
+        }
+        function start() {
+          if (window.__loaderDone && window.__hasWaitingAudio) return;
+          theme.loop = !window.__loaderDone;
+          var p = theme.play();
+          if (p) p.then(playing).catch(function () {});
+        }
+        window.__releaseTheme = function () {
+          theme.loop = false;
+        };
+        window.__markLoaderDone = function () {
+          window.__loaderDone = true;
+          theme.loop = false;
+          flush();
+        };
+        window.__afterLoaderAudio = function (fn) {
+          waiters.push(fn);
+          flush();
+        };
+        theme.addEventListener("playing", playing);
+        theme.addEventListener("ended", flush);
+        theme.addEventListener("canplaythrough", start);
+        start();
+        window.addEventListener("pointerdown", start, true);
+        window.addEventListener("keydown", start, true);
+      })();
+    </script>
     <a class="skip" href="#main">Skip to content</a>
     <div class="spotlight" aria-hidden="true"></div>
 
@@ -58,13 +117,13 @@
 
     <div class="shell">
       <!-- ============ LEFT RAIL ============ -->
-      <header class="rail">
+      <header class="rail" data-lenis-prevent>
         <div class="identity">
           <a class="name" href="#intro">Sanjay<br />Chowdary<br />Jampani</a>
-          <p class="role">Software Developer · Flutter &amp; Full-Stack</p>
+          <p class="role">Software Developer<br />Flutter &amp; Full-Stack</p>
           <p class="place">
-            Sliqpay (ARKS Ventures) — I build the app people use to send
-            money from the US to India.
+            Sliqpay (ARKS Ventures).<br />
+            I build the app people use to send money from the US to India.
           </p>
           <ul class="rail-creds">
             <li><b>Sliqpay</b> · Software Developer · since Jul 2025</li>
@@ -88,13 +147,13 @@
             <a href="https://linkedin.com/in/sanjay-chowdary-jampani-ab3423252" target="_blank" rel="noopener" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
-            <a href="mailto:sanjayjampani7@gmail.com" aria-label="Email">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sanjayjampani7@gmail.com" target="_blank" rel="noopener" aria-label="Email">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
             </a>
           </div>
-          <a class="btn btn--hazmat" href="assets/resume.pdf" target="_blank" rel="noopener">
+          <a class="btn btn--hazmat" href="assets/Sanjay-Chowdary-Jampani-Resume.pdf?v=2" target="_blank" rel="noopener">
             <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Résumé
+            Resume
           </a>
         </div>
       </header>
@@ -113,7 +172,8 @@
           </h1>
 
           <p class="hero-sub" data-hero>
-            Software Developer<span class="sep">/</span>Flutter &amp; Full-Stack<span class="sep">/</span>Payments @ Sliqpay
+            Software Developer<span class="sep">/</span>Flutter &amp; Full-Stack<br />
+            Payments @ Sliqpay
           </p>
 
           <div class="cred-strip" data-hero>
@@ -132,7 +192,7 @@
           </div>
 
           <p class="hero-lead" data-hero>
-            I build the app people use to send money from the US to India —
+            I build the app people use to send money from the US to India,
             the Flutter app, its web version, and the pipelines that ship it.
             A year as an intern, now full time. I like the part where a payment
             fails and someone has to find out why.
@@ -158,13 +218,13 @@
         <!-- 01 — experience -->
         <section id="experience" class="section">
           <p class="eyebrow reveal"><span class="num">01</span> Experience <span class="bar"></span></p>
-          <h2 class="section-title reveal">The cook — where I’ve shipped.</h2>
+          <h2 class="section-title reveal">The cook,<br />where I’ve shipped.</h2>
 
           <div class="xp">
             <article class="xp-item reveal">
-              <div class="xp-date">Jul 2026<br />— Present</div>
+              <div class="xp-date"><span>Jul 2026</span><span>to</span><span>Present</span></div>
               <div class="xp-body">
-                <h3 class="xp-role">Software Developer <span class="co">@ Sliqpay (ARKS Ventures)</span></h3>
+                <h3 class="xp-role">Software Developer<br /><span class="co">@ Sliqpay (ARKS Ventures)</span></h3>
                 <span class="xp-tag">Cross-border payments, US to India · Remote</span>
                 <ul class="xp-bullets">
                   <li>
@@ -173,9 +233,9 @@
                     partner theming.
                   </li>
                   <li>
-                    Built <b>B2B payments</b> — company wallet funding, beneficiaries,
+                    Built <b>B2B payments</b>, company wallet funding, beneficiaries,
                     quotes, file-based bulk payments with review, error reporting and
-                    OTP-verified execution — and <b>USD/INR wallets</b> (add money,
+                    OTP-verified execution, and <b>USD/INR wallets</b> (add money,
                     withdraw to a US bank, send from balance).
                   </li>
                   <li>
@@ -208,10 +268,10 @@
             </article>
 
             <article class="xp-item reveal">
-              <div class="xp-date">Jul 2025<br />— Jun 2026</div>
+              <div class="xp-date"><span>Jul 2025</span><span>to</span><span>Jun 2026</span></div>
               <div class="xp-body">
-                <h3 class="xp-role">SDE Intern <span class="co">@ Sliqpay (ARKS Ventures)</span></h3>
-                <span class="xp-tag">Remote</span>
+                <h3 class="xp-role">SDE Intern<br /><span class="co">@ Sliqpay (ARKS Ventures)</span></h3>
+                <span class="xp-tag">Cross-border payments, US to India · Remote</span>
                 <ul class="xp-bullets">
                   <li>
                     Set up <b>CI/CD</b> from the start: GitHub Actions with strict
@@ -247,9 +307,9 @@
             </article>
 
             <article class="xp-item reveal">
-              <div class="xp-date">May 2024<br />— Jul 2024</div>
+              <div class="xp-date"><span>May 2024</span><span>to</span><span>Jul 2024</span></div>
               <div class="xp-body">
-                <h3 class="xp-role">Summer Intern <span class="co">@ Swecha – Telangana Tech</span></h3>
+                <h3 class="xp-role">Summer Intern<br /><span class="co">@ Swecha, Telangana Tech</span></h3>
                 <span class="xp-tag">Hyderabad</span>
                 <ul class="xp-bullets">
                   <li>
@@ -285,16 +345,16 @@
           </div>
 
           <div class="projects" id="projects-grid">
-            <article class="project project--featured reveal">
+            <article class="project reveal">
               <div class="project-top">
-                <span class="project-kind">01 · Featured</span>
+                <span class="project-kind">01 · Project</span>
               </div>
-              <h3>Event Management System — Database Management System</h3>
+              <h3>Event Management System, Database Management System</h3>
               <p class="outcome">
                 A MySQL database normalized to <b>3NF</b> for users, admins and
                 vendors, with a Java backend (MySQL connector, JDBC) and a Java Swing
                 GUI. Implemented the admin view-events and feedback tracking flows and
-                the vendor add-food-items flow. Feb 2024 – Apr 2024.
+                the vendor add-food-items flow. Feb 2024 to Apr 2024.
               </p>
               <div class="chips">
                 <span class="chip">Java</span><span class="chip">MySQL</span>
@@ -376,8 +436,8 @@
               <h3>Education</h3>
               <div class="edu-item">
                 <div class="school">BITS Pilani</div>
-                <div class="deg">Bachelor of Engineering, Computer Science and Engineering</div>
-                <div class="meta">2022 — 2026 · Pilani, India</div>
+                <div class="deg">Bachelor of Engineering,<br />Computer Science and Engineering</div>
+                <div class="meta">2022 to 2026 · Pilani, India</div>
               </div>
               <div class="edu-item">
                 <div class="school">Relevant coursework</div>
@@ -393,11 +453,28 @@
               <ul class="ach">
                 <li>
                   <span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
-                  <span class="a-t"><b>Grub Coordinator</b>, Andhra Samithi Association · Jun 2024 – Apr 2025 — menu planning, vendor coordination and budgets for events; food safety and volunteer supervision.</span>
+                  <div class="edu-item">
+                    <div class="school">Grub Coordinator</div>
+                    <div class="deg">Andhra Samithi Association</div>
+                    <div class="meta">Jun 2024 to Apr 2025</div>
+                    <div class="deg">
+                      Menu planning, vendor coordination and budgets for events;
+                      food safety and volunteer supervision.
+                    </div>
+                  </div>
                 </li>
                 <li>
                   <span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
-                  <span class="a-t"><b>BOSM Coordinator</b>, Audiforce BITS Pilani · Jun 2024 – Apr 2025 — crowd control, entrance management and ticket scanning for N2O, EDM Nite and Inauguration; heavy-traffic planning for South Park.</span>
+                  <div class="edu-item">
+                    <div class="school">BOSM Coordinator</div>
+                    <div class="deg">Audiforce BITS Pilani</div>
+                    <div class="meta">Jun 2024 to Apr 2025</div>
+                    <div class="deg">
+                      Crowd control, entrance management and ticket scanning for
+                      N2O, EDM Nite and Inauguration; heavy-traffic planning for
+                      South Park.
+                    </div>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -410,11 +487,11 @@
           <h2 class="say reveal">Say my name.</h2>
           <p class="reveal">
             I’m building payments at Sliqpay and open to a Software Developer role
-            in India or remote. A role, a hard bug, or just trading notes — my
+            in India or remote. A role, a hard bug, or just trading notes. My
             inbox is open.
           </p>
           <div class="actions reveal">
-            <a class="btn btn--hazmat" href="mailto:sanjayjampani7@gmail.com">
+            <a class="btn btn--hazmat" href="https://mail.google.com/mail/?view=cm&fs=1&to=sanjayjampani7@gmail.com" target="_blank" rel="noopener">
               <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
               Get in touch
             </a>

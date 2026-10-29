@@ -31,12 +31,47 @@
 
 @media (min-width: 1024px) {
   .rail {
+    --rail-bleed: calc(max(0px, (100vw - var(--shell-max)) / 2) + var(--gutter));
     position: sticky;
     top: 0;
     height: 100vh;
     max-height: 100vh;
-    padding-block: clamp(64px, 11vh, 120px) var(--s-7);
-    justify-content: space-between;
+    width: calc(var(--rail-w) + var(--rail-bleed));
+    margin-left: calc(-1 * var(--rail-bleed));
+    padding-block: 28px 20px;
+    padding-left: var(--rail-bleed);
+    gap: 18px;
+    justify-content: flex-start;
+    direction: rtl;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tile-letter) transparent;
+  }
+  .rail > * {
+    direction: ltr;
+  }
+  .rail::-webkit-scrollbar {
+    width: 4px;
+  }
+  .rail::-webkit-scrollbar-track {
+    background: transparent;
+    margin-block: 28px;
+  }
+  .rail::-webkit-scrollbar-thumb {
+    background: var(--tile-letter);
+    border-radius: 999px;
+    border: 0;
+  }
+  .rail::-webkit-scrollbar-thumb:hover {
+    background: var(--ink);
+  }
+  .rail .nav a {
+    padding-block: 4px;
+  }
+  .rail-foot {
+    margin-top: auto;
+    flex-shrink: 0;
+    gap: 14px;
   }
 }
 

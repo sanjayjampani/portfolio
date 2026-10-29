@@ -69,6 +69,8 @@ function initScroll() {
       lenis.scrollTo(target, { offset: -10, duration: 1.1 });
     });
   });
+
+  return lenis;
 }
 
 /* ---- hero entrance (runs after the loader curtain lifts) ---- */
@@ -86,8 +88,81 @@ function heroIntro() {
   });
 }
 
+/* Contact is section 05, "Say my name." One play, and only after the
+   loader theme is done. A refresh on this section used to start both. */
+function initSayMyName() {
+  const section = document.getElementById("contact");
+  if (!section) return;
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  const audio = new Audio("assets/say-my-name.mp3");
+  audio.preload = "auto";
+  audio.loop = false;
+  let ctx;
+  let used = false;
+  let pending = false;
+
+  const boost = () => {
+    if (!Ctx || ctx) return;
+    ctx = new Ctx();
+    const src = ctx.createMediaElementSource(audio);
+    const gain = ctx.createGain();
+    gain.gain.value = 10;
+    src.connect(gain).connect(ctx.destination);
+  };
+
+  const playNow = () => {
+    if (used) return;
+    used = true;
+    audio.loop = false;
+    boost();
+    const go = () => {
+      audio.currentTime = 0;
+      audio.play().catch(() => {
+        used = false;
+      });
+    };
+    if (ctx && ctx.state !== "running") ctx.resume().then(go).catch(() => { used = false; });
+    else go();
+  };
+
+  const requestPlay = () => {
+    if (used || pending) return;
+    pending = true;
+    window.__hasWaitingAudio = true;
+    if (window.__afterLoaderAudio) window.__afterLoaderAudio(playNow);
+    else playNow();
+  };
+
+  window.addEventListener(
+    "pointerdown",
+    () => {
+      boost();
+      if (ctx && ctx.state !== "running") ctx.resume().catch(() => {});
+    },
+    { capture: true, once: true }
+  );
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) requestPlay();
+      }
+    },
+    { threshold: 0.2 }
+  );
+  io.observe(section);
+
+  document.querySelectorAll('a[href="#contact"]').forEach((link) => {
+    link.addEventListener("click", requestPlay);
+  });
+}
+
 /* ---- boot ---- */
-initScroll();
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+
+initSayMyName();
+const lenis = initScroll();
 if (!reduce) {
   const canvas = document.getElementById("smoke");
   if (canvas) initSmoke(canvas);
@@ -95,6 +170,8 @@ if (!reduce) {
 }
 
 runLoader({ reduce }).then(() => {
+  window.scrollTo(0, 0);
+  if (lenis) lenis.scrollTo(0, { immediate: true });
   heroIntro();
   if (!reduce && ScrollTrigger) ScrollTrigger.refresh();
 });

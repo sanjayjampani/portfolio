@@ -2,11 +2,20 @@
    meter fills, then the black curtain lifts (a camera "kick" into the
    page). Resolves so main.js can run the hero entrance after. */
 
+/* The theme is started from the inline script in index.html, before
+   these modules load. When the curtain lifts, stop the loop and let the
+   current pass finish. Pausing here cuts the track off on a fast load. */
+function releaseTheme() {
+  if (window.__releaseTheme) window.__releaseTheme();
+}
+
 export function runLoader({ reduce }) {
   const loader = document.getElementById("loader");
   if (!loader) return Promise.resolve();
 
   const finish = () => {
+    releaseTheme();
+    if (window.__markLoaderDone) window.__markLoaderDone();
     loader.classList.add("is-done");
     document.body.classList.remove("is-loading");
     setTimeout(() => loader.remove(), 1000);

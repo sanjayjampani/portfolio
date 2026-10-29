@@ -95,6 +95,10 @@ button {
 }
 
 /* custom scrollbar, on-theme */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--tile-letter) var(--bg-900);
+}
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -102,12 +106,12 @@ button {
   background: var(--bg-900);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--green-deep);
+  background: var(--tile-letter);
   border-radius: 999px;
   border: 2px solid var(--bg-900);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--green-emerald);
+  background: var(--ink);
 }
 
 /* ---- focus: visible, on-theme, never removed ---- */
