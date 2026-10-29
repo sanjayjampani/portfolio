@@ -153,4 +153,7 @@
   .section:nth-of-type(even) {
     padding-block: var(--s-8);
   }
+  .title-rest {
+    display: block;
+  }
 }
