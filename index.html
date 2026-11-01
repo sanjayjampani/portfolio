@@ -130,7 +130,7 @@
           <a class="name" href="#intro">Sanjay<br />Chowdary<br />Jampani</a>
           <p class="role">Software Developer<br />Flutter &amp; Full-Stack</p>
           <p class="place">
-            Sliqpay (ARKS Ventures).<br />
+            India · Sliqpay (ARKS Ventures).<br />
             I build the app people use to send money from the US to India.
           </p>
           <ul class="rail-creds">
@@ -159,7 +159,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
             </a>
           </div>
-          <a class="btn btn--hazmat" href="assets/Sanjay-Chowdary-Jampani-Resume.pdf?v=5" target="_blank" rel="noopener">
+          <a class="btn btn--hazmat" href="assets/Sanjay-Chowdary-Jampani-Resume.pdf?v=6" target="_blank" rel="noopener">
             <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Resume
           </a>
@@ -236,41 +236,42 @@
                 <span class="xp-tag">Cross-border payments, US to India · Remote</span>
                 <ul class="xp-bullets">
                   <li>
-                    Built the embeddable <b>Web SDK</b> and partner onboarding: React
-                    admin screens, Firebase Cloud Functions with idempotent APIs, and
-                    partner theming.
+                    Built and shipped features on the production US–India remittance
+                    app (Flutter iOS/Android/Web): <b>B2B company wallets</b>,
+                    file-based bulk payouts with review and OTP, and
+                    <b>USD/INR wallets</b> (add money, withdraw to a US bank, send
+                    from balance).
                   </li>
                   <li>
-                    Built <b>B2B payments</b>, company wallet funding, beneficiaries,
-                    quotes, file-based bulk payments with review, error reporting and
-                    OTP-verified execution, and <b>USD/INR wallets</b> (add money,
-                    withdraw to a US bank, send from balance).
+                    Built the embeddable <b>Web SDK</b> and partner onboarding (React
+                    admin, Firebase Cloud Functions with idempotent APIs, partner
+                    theming) so third parties can drop a white-labeled checkout into
+                    their own product.
                   </li>
                   <li>
-                    Integrated the <b>Persona SDK</b> (Android, iOS) as the new KYC
-                    provider, with inquiry endpoints and analytics events.
+                    Replaced KYC with <b>Persona</b> on Android and iOS (inquiry APIs
+                    and analytics); made payouts safe to retry with idempotency keys,
+                    silent FX-quote refresh, and bank-link re-provision without
+                    restarting onboarding.
                   </li>
                   <li>
-                    Built an <b>analytics dashboard</b> (funnels, revenue, retention)
-                    with Node endpoints and Postgres materialized views, and rolled out
-                    CORS changes across <span class="hl">8</span> backend microservices.
+                    Hardened the money path: TLS pinning, token-refresh race fixes,
+                    obfuscation, Crashlytics symbol upload, and secrets checks in the
+                    release workflow. Closed <span class="hl">~190</span> tickets;
+                    CORS and partner-header changes across
+                    <span class="hl">8</span> backend services.
                   </li>
                   <li>
-                    Made payments more resilient (silent FX-quote refresh, bank-link
-                    re-provisioning with retry, idempotency keys) and faster (splash
-                    prefetching, cached Remote Config, auth-state caching).
-                  </li>
-                  <li>
-                    Closed <span class="hl">~190</span> tickets, including a security
-                    and performance audit (TLS pinning, token-refresh races,
-                    obfuscation), and hardened releases with Crashlytics symbol upload
-                    and secrets validation.
+                    Built an <b>analytics dashboard</b> (funnels, volume, revenue,
+                    retention) on Node and Postgres materialized views. Faster start:
+                    splash prefetch, cached Remote Config, in-memory auth state.
                   </li>
                 </ul>
                 <div class="chips">
                   <span class="chip">Flutter</span><span class="chip">React</span>
                   <span class="chip">Node.js</span><span class="chip">Firebase</span>
                   <span class="chip">PostgreSQL</span><span class="chip">Persona</span>
+                  <span class="chip">Crashlytics</span>
                 </div>
               </div>
             </article>
@@ -282,28 +283,21 @@
                 <span class="xp-tag">Cross-border payments, US to India · Remote</span>
                 <ul class="xp-bullets">
                   <li>
-                    Set up <b>CI/CD</b> from the start: GitHub Actions with strict
-                    analysis and visual-regression tests, and pipelines that deploy to
-                    TestFlight and Google Play.
+                    Set up <b>CI/CD</b> in the first weeks: GitHub Actions with
+                    strict analysis and Figma-matched golden tests, then TestFlight
+                    and Play Console.
                   </li>
                   <li>
-                    Built auth and onboarding in Flutter (login, passcode, biometrics,
-                    Google sign-in, Terms consent) and <b>KYC</b> screens (document
-                    verification, Plaid bank linking).
+                    Built auth and onboarding (login, passcode, biometrics, Google
+                    sign-in, Terms consent) and <b>KYC</b> (documents, Plaid). Built
+                    the payment flows: bank transfer, UPI, Scan &amp; Pay, FX
+                    comparison, fraud-check OTP, and idempotent order creation.
                   </li>
                   <li>
-                    Built core <b>payment flows</b>: bank transfer, pay to UPI ID,
-                    Scan &amp; Pay (QR), FX comparison, fraud-check OTP modals and
-                    idempotent order creation.
-                  </li>
-                  <li>
-                    Integrated Plaid, Sardine (fraud SDK), CleverTap and AppsFlyer, and
-                    built the app’s analytics layer.
-                  </li>
-                  <li>
-                    Built the responsive <b>Web version</b> of the app
-                    (<span class="hl">~60</span> PRs) and wrote
-                    <span class="hl">110+</span> unit, widget and golden tests.
+                    Integrated Plaid, Sardine, CleverTap, and AppsFlyer. Built the
+                    responsive <b>web version</b>
+                    (<span class="hl">~60</span> PRs). Wrote
+                    <span class="hl">110+</span> unit, widget, and golden tests.
                   </li>
                 </ul>
                 <div class="chips">
@@ -407,29 +401,31 @@
               <span class="tile" title="Persona"><span class="num">13</span><span class="sym">Ps</span><span class="ename">Persona</span></span>
               <span class="tile" title="CleverTap"><span class="num">14</span><span class="sym">Ct</span><span class="ename">CleverTap</span></span>
               <span class="tile" title="AppsFlyer"><span class="num">15</span><span class="sym">Af</span><span class="ename">AppsFlyer</span></span>
+              <span class="tile" title="Sentry"><span class="num">16</span><span class="sym">Se</span><span class="ename">Sentry</span></span>
             </div>
           </div>
 
           <div class="skill-group reveal">
             <h3>Tools</h3>
             <div class="skill-grid">
-              <span class="tile" title="Git"><span class="num">16</span><span class="sym">Gt</span><span class="ename">Git</span></span>
-              <span class="tile" title="GitHub Actions"><span class="num">17</span><span class="sym">Ga</span><span class="ename">Actions</span></span>
-              <span class="tile" title="PostgreSQL"><span class="num">18</span><span class="sym">Pg</span><span class="ename">Postgres</span></span>
-              <span class="tile" title="MySQL"><span class="num">19</span><span class="sym">My</span><span class="ename">MySQL</span></span>
-              <span class="tile" title="Flutter test"><span class="num">20</span><span class="sym">Ft</span><span class="ename">Flutter test</span></span>
-              <span class="tile" title="Golden tests"><span class="num">21</span><span class="sym">Au</span><span class="ename">Golden tests</span></span>
+              <span class="tile" title="Git"><span class="num">17</span><span class="sym">Gt</span><span class="ename">Git</span></span>
+              <span class="tile" title="GitHub Actions"><span class="num">18</span><span class="sym">Ga</span><span class="ename">Actions</span></span>
+              <span class="tile" title="PostgreSQL"><span class="num">19</span><span class="sym">Pg</span><span class="ename">Postgres</span></span>
+              <span class="tile" title="MySQL"><span class="num">20</span><span class="sym">My</span><span class="ename">MySQL</span></span>
+              <span class="tile" title="Flutter test"><span class="num">21</span><span class="sym">Ft</span><span class="ename">Flutter test</span></span>
+              <span class="tile" title="Golden tests"><span class="num">22</span><span class="sym">Au</span><span class="ename">Golden tests</span></span>
+              <span class="tile" title="Crashlytics"><span class="num">23</span><span class="sym">Cr</span><span class="ename">Crashlytics</span></span>
             </div>
           </div>
 
           <div class="skill-group reveal">
             <h3>Core CS</h3>
             <div class="skill-grid">
-              <span class="tile" title="Data Structures & Algorithms"><span class="num">22</span><span class="sym">Ds</span><span class="ename">DSA</span></span>
-              <span class="tile" title="Object-Oriented Programming"><span class="num">23</span><span class="sym">Oo</span><span class="ename">OOP</span></span>
-              <span class="tile" title="Database Systems"><span class="num">24</span><span class="sym">Db</span><span class="ename">DBMS</span></span>
-              <span class="tile" title="Operating Systems"><span class="num">25</span><span class="sym">Os</span><span class="ename">OS</span></span>
-              <span class="tile" title="Computer Networks"><span class="num">26</span><span class="sym">Cn</span><span class="ename">Networks</span></span>
+              <span class="tile" title="Data Structures & Algorithms"><span class="num">24</span><span class="sym">Ds</span><span class="ename">DSA</span></span>
+              <span class="tile" title="Object-Oriented Programming"><span class="num">25</span><span class="sym">Oo</span><span class="ename">OOP</span></span>
+              <span class="tile" title="Database Systems"><span class="num">26</span><span class="sym">Db</span><span class="ename">DBMS</span></span>
+              <span class="tile" title="Operating Systems"><span class="num">27</span><span class="sym">Os</span><span class="ename">OS</span></span>
+              <span class="tile" title="Computer Networks"><span class="num">28</span><span class="sym">Cn</span><span class="ename">Networks</span></span>
             </div>
           </div>
         </section>
@@ -464,10 +460,9 @@
                   <div class="edu-item">
                     <div class="school">Grub Coordinator</div>
                     <div class="deg">Andhra Samithi Association</div>
-                    <div class="meta">Jun 2024 to Apr 2025</div>
+                    <div class="meta">Aug 2024 to Apr 2025</div>
                     <div class="deg">
-                      Menu planning, vendor coordination and budgets for events;
-                      food safety and volunteer supervision.
+                      Menu planning, vendor coordination, and budgets for campus events.
                     </div>
                   </div>
                 </li>
@@ -476,11 +471,9 @@
                   <div class="edu-item">
                     <div class="school">BOSM Coordinator</div>
                     <div class="deg">Audiforce BITS Pilani</div>
-                    <div class="meta">Jun 2024 to Apr 2025</div>
+                    <div class="meta">Aug 2024 to Apr 2025</div>
                     <div class="deg">
-                      Crowd control, entrance management and ticket scanning for
-                      N2O, EDM Nite and Inauguration; heavy-traffic planning for
-                      South Park.
+                      Crowd control, entrance, and ticket scanning for key campus events.
                     </div>
                   </div>
                 </li>
