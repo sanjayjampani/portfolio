@@ -135,7 +135,7 @@
           </p>
           <ul class="rail-creds">
             <li><b>Sliqpay</b> · SDE Intern Jul 2025 · Software Developer Jul 2026</li>
-            <li><b>Tickets closed</b> · <span class="rc-n">~190</span></li>
+            <li><b>Bugs and tickets fixed</b> · <span class="rc-n">~190</span></li>
             <li><b>BITS Pilani</b> · CSE · 2026</li>
           </ul>
           <span class="kicker"><span class="dot"></span> Open to Software Developer / Flutter roles · India / Remote</span>
@@ -159,7 +159,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
             </a>
           </div>
-          <a class="btn btn--hazmat" href="assets/Sanjay-Chowdary-Jampani-Resume.pdf?v=28" target="_blank" rel="noopener">
+          <a class="btn btn--hazmat" href="assets/Sanjay-Chowdary-Jampani-Resume.pdf?v=29" target="_blank" rel="noopener">
             <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Resume
           </a>
@@ -211,7 +211,7 @@
           </button>
 
           <div class="hero-stats" data-hero>
-            <div class="stat"><div class="v"><span data-count="190" data-prefix="~">~0</span></div><div class="k">tickets closed</div></div>
+            <div class="stat"><div class="v"><span data-count="190" data-prefix="~">~0</span></div><div class="k">bugs &amp; tickets fixed</div></div>
             <div class="stat"><div class="v"><span data-count="110" data-suffix="+">0+</span></div><div class="k">unit, widget &amp; golden tests</div></div>
             <div class="stat"><div class="v"><span data-count="60" data-prefix="~">~0</span></div><div class="k">PRs on the web version</div></div>
             <div class="stat"><div class="v"><span data-count="3">0</span></div><div class="k">store &amp; web release pipelines</div></div>
@@ -254,11 +254,10 @@
                     restarting onboarding.
                   </li>
                   <li>
-                    Hardened the money path: TLS pinning, token-refresh race fixes,
-                    obfuscation, Crashlytics symbol upload, and secrets checks in the
-                    release workflow. Closed <span class="hl">~190</span> tickets;
-                    CORS and partner-header changes across
-                    <span class="hl">8</span> backend services.
+                    Fixed <span class="hl">~190</span> bugs and feature tickets across the
+                    app and backend, including TLS pinning, token-refresh race fixes,
+                    obfuscation, Crashlytics symbol upload, and CORS and partner-header
+                    changes across <span class="hl">8</span> backend services.
                   </li>
                   <li>
                     Built an <b>analytics dashboard</b> (funnels, volume, revenue,
@@ -352,19 +351,45 @@
               <div class="project-top">
                 <span class="project-kind">01 · Project</span>
               </div>
-              <h3>ConnectExpress – Railway search</h3>
+              <h3>MyRA – Personal AI assistant for Gmail, Calendar, and Drive</h3>
               <p class="outcome">
-                I built a full-stack railway search platform with a
-                Node.js/Express backend and a React frontend on the August 2026 Indian
-                Railways timetable: 1,520 trains and 58 stations in Tamil Nadu,
-                Karnataka, and Andhra Pradesh. Direct train or one change.
-                Connecting search is JavaScript. Search trains between two stations and keep
-                only those that leave after a time you set. Users can save
-                trips. Nov 2026.
+                Built a full-stack RAG assistant that answers plain-language questions
+                over a user's Gmail, Google Calendar, and Drive, and streams back answers
+                with the source emails and events they came from. Designed hybrid
+                retrieval in PostgreSQL: pgvector search plus BM25 scoring written in
+                SQL, merged with reciprocal rank fusion and reranked by an LLM, with
+                person, date, and source filters parsed from the question. Built
+                incremental Google sync (Gmail history IDs, Calendar sync tokens) on
+                read-only OAuth with PKCE and AES-256 encrypted tokens. Every query is
+                scoped to the signed-in user. 400+ automated tests. Nov 2026.
               </p>
               <div class="chips">
                 <span class="chip">React</span><span class="chip">Node.js</span>
-                <span class="chip">Express</span><span class="chip">MongoDB</span>
+                <span class="chip">Express.js</span><span class="chip">TypeScript</span>
+                <span class="chip">PostgreSQL (pgvector)</span><span class="chip">LangChain</span>
+                <span class="chip">OpenAI</span><span class="chip">Anthropic</span>
+              </div>
+              <p class="project-links">
+                <a href="https://github.com/sanjayjampani/MyRA" target="_blank" rel="noopener">GitHub</a>
+              </p>
+            </article>
+
+            <article class="project reveal">
+              <div class="project-top">
+                <span class="project-kind">02 · Project</span>
+              </div>
+              <h3>ConnectExpress – Railway search</h3>
+              <p class="outcome">
+                Built a full-stack railway search app (Node.js/Express backend, React
+                frontend) on the August 2026 Indian Railways timetable: 1,520 trains,
+                58 stations across Tamil Nadu, Karnataka, and Andhra Pradesh. Finds
+                direct trains and one-change connections. Typed searches like
+                "Chennai Central to SBC after 6pm" map to station codes and a departure
+                time. Users can save trips to their account. Nov 2026.
+              </p>
+              <div class="chips">
+                <span class="chip">React</span><span class="chip">Node.js</span>
+                <span class="chip">Express.js</span><span class="chip">MongoDB</span>
               </div>
               <p class="project-links">
                 <a href="https://github.com/sanjayjampani/connect-express" target="_blank" rel="noopener">GitHub</a>
@@ -379,60 +404,64 @@
           <h2 class="section-title reveal">The formula.</h2>
 
           <div class="skill-group reveal">
-            <h3>Languages</h3>
+            <h3>Frameworks &amp; Platforms</h3>
             <div class="skill-grid">
-              <span class="tile" title="Dart"><span class="num">1</span><span class="sym">Da</span><span class="ename">Dart</span></span>
-              <span class="tile" title="TypeScript"><span class="num">2</span><span class="sym">Ts</span><span class="ename">TypeScript</span></span>
-              <span class="tile" title="JavaScript"><span class="num">3</span><span class="sym">Js</span><span class="ename">JavaScript</span></span>
-              <span class="tile" title="Java"><span class="num">4</span><span class="sym">Jv</span><span class="ename">Java</span></span>
-              <span class="tile" title="SQL"><span class="num">5</span><span class="sym">Sq</span><span class="ename">SQL</span></span>
+              <span class="tile" title="Flutter"><span class="num">1</span><span class="sym">Fl</span><span class="ename">Flutter</span></span>
+              <span class="tile" title="GetX"><span class="num">2</span><span class="sym">Gx</span><span class="ename">GetX</span></span>
+              <span class="tile" title="React"><span class="num">3</span><span class="sym">Re</span><span class="ename">React</span></span>
+              <span class="tile" title="Node.js"><span class="num">4</span><span class="sym">Nd</span><span class="ename">Node.js</span></span>
+              <span class="tile" title="Firebase"><span class="num">5</span><span class="sym">Fb</span><span class="ename">Firebase</span></span>
+              <span class="tile" title="iOS"><span class="num">6</span><span class="sym">iO</span><span class="ename">iOS</span></span>
+              <span class="tile" title="Android"><span class="num">7</span><span class="sym">An</span><span class="ename">Android</span></span>
+              <span class="tile" title="Flutter Web"><span class="num">8</span><span class="sym">Fw</span><span class="ename">Flutter Web</span></span>
             </div>
           </div>
 
           <div class="skill-group reveal">
-            <h3>Frameworks &amp; Platforms</h3>
+            <h3>Languages</h3>
             <div class="skill-grid">
-              <span class="tile" title="Flutter"><span class="num">6</span><span class="sym">Fl</span><span class="ename">Flutter</span></span>
-              <span class="tile" title="GetX"><span class="num">7</span><span class="sym">Gx</span><span class="ename">GetX</span></span>
-              <span class="tile" title="React"><span class="num">8</span><span class="sym">Re</span><span class="ename">React</span></span>
-              <span class="tile" title="Node.js"><span class="num">9</span><span class="sym">Nd</span><span class="ename">Node.js</span></span>
-              <span class="tile" title="Firebase"><span class="num">10</span><span class="sym">Fb</span><span class="ename">Firebase</span></span>
+              <span class="tile" title="Dart"><span class="num">9</span><span class="sym">Da</span><span class="ename">Dart</span></span>
+              <span class="tile" title="TypeScript"><span class="num">10</span><span class="sym">Ts</span><span class="ename">TypeScript</span></span>
+              <span class="tile" title="JavaScript"><span class="num">11</span><span class="sym">Js</span><span class="ename">JavaScript</span></span>
+              <span class="tile" title="Java"><span class="num">12</span><span class="sym">Jv</span><span class="ename">Java</span></span>
+              <span class="tile" title="SQL"><span class="num">13</span><span class="sym">Sq</span><span class="ename">SQL</span></span>
             </div>
           </div>
 
           <div class="skill-group reveal">
             <h3>Integrations</h3>
             <div class="skill-grid">
-              <span class="tile" title="Plaid"><span class="num">11</span><span class="sym">Pl</span><span class="ename">Plaid</span></span>
-              <span class="tile" title="Sardine"><span class="num">12</span><span class="sym">Sd</span><span class="ename">Sardine</span></span>
-              <span class="tile" title="Persona"><span class="num">13</span><span class="sym">Ps</span><span class="ename">Persona</span></span>
-              <span class="tile" title="CleverTap"><span class="num">14</span><span class="sym">Ct</span><span class="ename">CleverTap</span></span>
-              <span class="tile" title="AppsFlyer"><span class="num">15</span><span class="sym">Af</span><span class="ename">AppsFlyer</span></span>
-              <span class="tile" title="Sentry"><span class="num">16</span><span class="sym">Se</span><span class="ename">Sentry</span></span>
+              <span class="tile" title="Plaid"><span class="num">14</span><span class="sym">Pl</span><span class="ename">Plaid</span></span>
+              <span class="tile" title="Persona"><span class="num">15</span><span class="sym">Ps</span><span class="ename">Persona</span></span>
+              <span class="tile" title="Sardine"><span class="num">16</span><span class="sym">Sd</span><span class="ename">Sardine</span></span>
+              <span class="tile" title="CleverTap"><span class="num">17</span><span class="sym">Ct</span><span class="ename">CleverTap</span></span>
+              <span class="tile" title="AppsFlyer"><span class="num">18</span><span class="sym">Af</span><span class="ename">AppsFlyer</span></span>
+              <span class="tile" title="Sentry"><span class="num">19</span><span class="sym">Se</span><span class="ename">Sentry</span></span>
             </div>
           </div>
 
           <div class="skill-group reveal">
             <h3>Tools</h3>
             <div class="skill-grid">
-              <span class="tile" title="Git"><span class="num">17</span><span class="sym">Gt</span><span class="ename">Git</span></span>
-              <span class="tile" title="GitHub Actions"><span class="num">18</span><span class="sym">Ga</span><span class="ename">Actions</span></span>
-              <span class="tile" title="PostgreSQL"><span class="num">19</span><span class="sym">Pg</span><span class="ename">Postgres</span></span>
-              <span class="tile" title="MySQL"><span class="num">20</span><span class="sym">My</span><span class="ename">MySQL</span></span>
-              <span class="tile" title="Flutter test"><span class="num">21</span><span class="sym">Ft</span><span class="ename">Flutter test</span></span>
-              <span class="tile" title="Golden tests"><span class="num">22</span><span class="sym">Au</span><span class="ename">Golden tests</span></span>
-              <span class="tile" title="Crashlytics"><span class="num">23</span><span class="sym">Cr</span><span class="ename">Crashlytics</span></span>
+              <span class="tile" title="Git"><span class="num">20</span><span class="sym">Gt</span><span class="ename">Git</span></span>
+              <span class="tile" title="GitHub Actions"><span class="num">21</span><span class="sym">Ga</span><span class="ename">Actions</span></span>
+              <span class="tile" title="CI/CD"><span class="num">22</span><span class="sym">Ci</span><span class="ename">CI/CD</span></span>
+              <span class="tile" title="REST APIs"><span class="num">23</span><span class="sym">Ra</span><span class="ename">REST APIs</span></span>
+              <span class="tile" title="PostgreSQL"><span class="num">24</span><span class="sym">Pg</span><span class="ename">Postgres</span></span>
+              <span class="tile" title="MySQL"><span class="num">25</span><span class="sym">My</span><span class="ename">MySQL</span></span>
+              <span class="tile" title="Crashlytics"><span class="num">26</span><span class="sym">Cr</span><span class="ename">Crashlytics</span></span>
+              <span class="tile" title="Unit, widget and golden tests"><span class="num">27</span><span class="sym">Ut</span><span class="ename">Tests</span></span>
             </div>
           </div>
 
           <div class="skill-group reveal">
             <h3>Core CS</h3>
             <div class="skill-grid">
-              <span class="tile" title="Data Structures & Algorithms"><span class="num">24</span><span class="sym">Ds</span><span class="ename">DSA</span></span>
-              <span class="tile" title="Object-Oriented Programming"><span class="num">25</span><span class="sym">Oo</span><span class="ename">OOP</span></span>
-              <span class="tile" title="Database Systems"><span class="num">26</span><span class="sym">Db</span><span class="ename">DBMS</span></span>
-              <span class="tile" title="Operating Systems"><span class="num">27</span><span class="sym">Os</span><span class="ename">OS</span></span>
-              <span class="tile" title="Computer Networks"><span class="num">28</span><span class="sym">Cn</span><span class="ename">Networks</span></span>
+              <span class="tile" title="Data Structures & Algorithms"><span class="num">28</span><span class="sym">Ds</span><span class="ename">DSA</span></span>
+              <span class="tile" title="Object-Oriented Programming"><span class="num">29</span><span class="sym">Oo</span><span class="ename">OOP</span></span>
+              <span class="tile" title="Database Systems"><span class="num">30</span><span class="sym">Db</span><span class="ename">DBMS</span></span>
+              <span class="tile" title="Operating Systems"><span class="num">31</span><span class="sym">Os</span><span class="ename">OS</span></span>
+              <span class="tile" title="Computer Networks"><span class="num">32</span><span class="sym">Cn</span><span class="ename">Networks</span></span>
             </div>
           </div>
         </section>
@@ -446,7 +475,7 @@
             <div class="reveal">
               <h3>Education</h3>
               <div class="edu-item">
-                <div class="school">BITS Pilani</div>
+                <div class="school">Birla Institute of Technology and Science, Pilani</div>
                 <div class="deg">Bachelor of Engineering,<br />Computer Science and Engineering</div>
                 <div class="meta">2022 to 2026 · Pilani, India</div>
               </div>
